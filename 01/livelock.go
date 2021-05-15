@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-func main() {
+func main0() {
 	cadence := sync.NewCond(&sync.Mutex{})
 	go func() {
 		for range time.Tick(1 * time.Millisecond) {
