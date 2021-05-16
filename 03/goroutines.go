@@ -45,7 +45,7 @@ func main2() {
 	wg.Wait()
 }
 
-func main() {
+func main3() {
 	hello := func(wg *sync.WaitGroup, id int) {
 		defer wg.Done()
 		fmt.Printf("Hello from %v\n", id)
