@@ -50,7 +50,7 @@ func main0() {
 	fmt.Println("Arithmetic complete.")
 }
 
-func main() {
+func main1() {
 	producer := func(wg *sync.WaitGroup, l sync.Locker) {
 		defer wg.Done()
 		for i := 5; i > 0; i-- {
