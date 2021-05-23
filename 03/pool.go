@@ -19,7 +19,7 @@ func main0() {
 	myPool.Get()
 }
 
-func main() {
+func main1() {
 	var numCalcsCreated int
 	calcPool := &sync.Pool{
 		New: func() interface{} {
