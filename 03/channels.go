@@ -55,7 +55,7 @@ func main3() {
 	wg.Wait()
 }
 
-func main() {
+func main4() {
 	var stdoutBuff bytes.Buffer
 	defer stdoutBuff.WriteTo(os.Stdout)
 
@@ -72,4 +72,23 @@ func main() {
 	for integer := range intStream {
 		fmt.Fprintf(&stdoutBuff, "Received %v.\n", integer)
 	}
+}
+
+func main() {
+	chanOwner := func() <-chan int {
+		resultStream := make(chan int, 5)
+		go func() {
+			defer close(resultStream)
+			for i := 0; i <= 5; i++ {
+				resultStream <- i
+			}
+		}()
+		return resultStream
+	}
+
+	resultStream := chanOwner()
+	for result := range resultStream {
+		fmt.Printf("Received: %d\n", result)
+	}
+	fmt.Println("Done receiving!")
 }
