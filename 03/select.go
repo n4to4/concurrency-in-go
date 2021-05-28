@@ -24,11 +24,35 @@ func main0() {
 	fmt.Printf("c1Count: %d\nc2Count: %d\n", c1Count, c2Count)
 }
 
-func main() {
+func main1() {
 	var c <-chan int
 	select {
 	case <-c:
-	case <-time.After(1 * time.Second):
-		fmt.Println("Timed out.")
+	case x := <-time.After(1 * time.Second):
+		fmt.Printf("Timed out: %v", x)
 	}
+}
+
+func main() {
+	done := make(chan interface{})
+	go func() {
+		time.Sleep(5 * time.Second)
+		close(done)
+	}()
+
+	workCounter := 0
+loop:
+	for {
+		select {
+		case <-done:
+			break loop
+		default:
+		}
+
+		// Simulate work
+		workCounter++
+		time.Sleep(1 * time.Second)
+	}
+
+	fmt.Printf("Achived %v cycles of work before signalled to stop.\n", workCounter)
 }
