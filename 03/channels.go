@@ -74,7 +74,7 @@ func main4() {
 	}
 }
 
-func main() {
+func main5() {
 	chanOwner := func() <-chan int {
 		resultStream := make(chan int, 5)
 		go func() {
