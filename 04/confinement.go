@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func main() {
+func main0() {
 	data := make([]int, 4)
 
 	loopData := func(handleData chan<- int) {
