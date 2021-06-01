@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-func main() { example02() }
+func main0() { example02() }
 
 func example01() {
 	checkStatus := func(
