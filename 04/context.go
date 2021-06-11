@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	process()
+	context04()
 }
 
 func context01() {
@@ -86,7 +86,7 @@ func locale(ctx context.Context) (string, error) {
 	return "EN/US", nil
 }
 
-func process() {
+func context02() {
 	ProcessRequest("jane", "abc123")
 }
 
@@ -102,4 +102,15 @@ func HandleResponse(ctx context.Context) {
 		ctx.Value("userID"),
 		ctx.Value("authToken"),
 	)
+}
+
+func context03() {
+	type foo int
+	type bar int
+
+	m := make(map[interface{}]int)
+	m[foo(1)] = 1
+	m[bar(1)] = 2
+
+	fmt.Printf("%v", m)
 }
